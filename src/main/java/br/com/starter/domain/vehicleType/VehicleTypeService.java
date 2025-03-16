@@ -33,20 +33,6 @@ public class VehicleTypeService {
         return vehicleTypeRepository.findAll();
     }
 
-    public VehicleType update(UUID id, VehicleType vehicleType) {
-        VehicleType existingVehicleType = vehicleTypeRepository.findById(id).orElse(null);
-
-        if (existingVehicleType != null) {
-            existingVehicleType.setModel(vehicleType.getModel());
-            existingVehicleType.setBrand(vehicleType.getBrand());
-            existingVehicleType.setYear(vehicleType.getYear());
-
-            return vehicleTypeRepository.save(existingVehicleType);
-        }
-
-        return null;
-    }
-
     public Optional<VehicleType> getVehicleTypeById(UUID vehicleTypeId) {
         return vehicleTypeRepository.findById(vehicleTypeId);
     }

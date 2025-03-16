@@ -39,21 +39,10 @@ public class UpdateVehicleUseCase {
                     );
             vehicle.setVehicleType(vehicleType);
         }
-
-        if (request.getCategory() != null) {
-            try {
-                VehicleTypeCategory category = VehicleTypeCategory.valueOf(request.getCategory().toUpperCase());
-                vehicle.getVehicleType().setCategory(category);
-            } catch (IllegalArgumentException e) {
-                throw new ResponseStatusException(
-                        HttpStatus.BAD_REQUEST,
-                        "Categoria de veículo inválida!"
-                );
-            }
-        }
-
+        
         vehicle.setLicensePlate(request.getLicensePlate());
         vehicle.setColor(request.getColor());
+        vehicle.setYear(request.getYear());
 
         return Optional.of(vehicleService.save(vehicle));
     }

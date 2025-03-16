@@ -21,7 +21,6 @@ public class CreateVehicleTypeUseCase {
         VehicleType vehicleType = new VehicleType();
         vehicleType.setModel(request.getModel());
         vehicleType.setBrand(request.getBrand());
-        vehicleType.setYear(request.getYear());
         vehicleType.setCategory(request.getCategory());
         vehicleType.setOwner(owner);
 

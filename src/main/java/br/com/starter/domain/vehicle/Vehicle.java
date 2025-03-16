@@ -28,6 +28,7 @@ public class Vehicle {
 
     private String licensePlate;
     private String color;
+    private String year;
 
     @ManyToOne
     @JoinColumn(name = "vehicle_type_id", foreignKey = @ForeignKey(name = "fk_vehicle_vehicle_type"))

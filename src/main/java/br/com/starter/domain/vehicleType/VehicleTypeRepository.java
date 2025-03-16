@@ -16,8 +16,6 @@ public interface VehicleTypeRepository extends JpaRepository<VehicleType, UUID> 
 
     Page<VehicleType> findByBrandContainingIgnoreCaseAndModelContainingIgnoreCase(String brand, String model, Pageable pageable);
 
-    Optional<VehicleType> findByModelAndBrandAndYear(String model, String brand, String year);
-
     Optional<VehicleType> findByModel(String model);
 
     @Query("""

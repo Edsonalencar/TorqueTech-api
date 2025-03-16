@@ -7,6 +7,5 @@ import lombok.Data;
 public class CreateVehicleTypeDTO {
     private String model;
     private String brand;
-    private String year;
     private VehicleTypeCategory category;
 }

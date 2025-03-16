@@ -5,6 +5,7 @@ import br.com.starter.domain.garage.GarageService;
 import br.com.starter.domain.item.Item;
 import br.com.starter.domain.item.ItemService;
 import br.com.starter.domain.user.User;
+import br.com.starter.domain.vehicleType.VehicleTypeService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import java.util.Optional;
 public class CreateItemUseCase {
     private final ItemService itemService;
     private final GarageService garageService;
+    private final VehicleTypeService vehicleTypeService;
 
     public Optional<?> handler(User user, CreateItemRequest request) {
         var garage = garageService.getByUser(user).orElseThrow(() ->
@@ -31,6 +33,14 @@ public class CreateItemUseCase {
 
         var item = mapper.map(request, Item.class);
         item.setGarage(garage);
+
+        if (request.getVehicleTypeId() != null) {
+            var vehicleType = vehicleTypeService.findById(request.getVehicleTypeId())
+                .orElseThrow(() ->
+                    new IllegalArgumentException("Tipo de veículo não encontrado")
+                );
+            item.setVehicleType(vehicleType);
+        }
 
         return Optional.of(itemService.save(item));
     }

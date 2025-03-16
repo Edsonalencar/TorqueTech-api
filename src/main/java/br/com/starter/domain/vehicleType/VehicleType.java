@@ -22,7 +22,6 @@ public class VehicleType {
 
     private String model;
     private String brand;
-    private String year;
 
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)

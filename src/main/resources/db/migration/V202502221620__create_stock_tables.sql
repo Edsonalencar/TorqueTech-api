@@ -6,9 +6,11 @@ CREATE TABLE IF NOT EXISTS item (
     name VARCHAR(255) NOT NULL,
     category VARCHAR(100) NOT NULL,
     description TEXT,
+    vehicle_type_id UUID,
     garage_id UUID NOT NULL,
     status VARCHAR(50) NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    CONSTRAINT fk_item_vehicle_type FOREIGN KEY (vehicle_type_id) REFERENCES vehicle_types(id) ON DELETE SET NULL,
     CONSTRAINT fk_item_garage FOREIGN KEY (garage_id) REFERENCES garage(id)
 );
 

@@ -44,7 +44,7 @@ public class CreateVehicleUseCase {
         Vehicle vehicle = new Vehicle();
         vehicle.setLicensePlate(request.getLicensePlate());
         vehicle.setColor(request.getColor());
-
+        vehicle.setYear(request.getYear());
         vehicle.setVehicleType(vehicleType);
         vehicle.setCustomer(customer.get());
 

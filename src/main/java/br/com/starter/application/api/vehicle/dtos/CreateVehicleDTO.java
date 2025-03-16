@@ -12,7 +12,8 @@ public class CreateVehicleDTO {
     private String licensePlate;
     @NotNull(message = "O Id do modelo do carro é obrigatório!")
     private UUID vehicleTypeId;
-
+    
+    private String year;
     private String color;
     private UUID customerId;
 }
