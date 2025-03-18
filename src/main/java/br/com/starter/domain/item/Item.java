@@ -30,7 +30,7 @@ public class Item {
     private ItemStatus status = ItemStatus.ACTIVE;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_type_id", foreignKey = @ForeignKey(name = "fk_vehicle_vehicle_type"))
+    @JoinColumn(name = "vehicle_type_id")
     private VehicleType vehicleType;
 
     @JsonIgnore

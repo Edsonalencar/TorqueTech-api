@@ -49,6 +49,7 @@ public class GarageService {
     }
 
     public Optional<Garage> getByUser(User user) {
+
         var mechanic = mechanicService.getByUser(user);
         if (mechanic.isPresent())
             return Optional.of(mechanic.get().getGarage());
@@ -56,6 +57,8 @@ public class GarageService {
         var manager= managerService.getByUser(user);
         if (manager.isPresent())
             return Optional.of(manager.get().getGarage());
+
+
 
         return  garageRepository.findByOwner(user.getId());
     }

@@ -11,5 +11,5 @@ public class CreateItemRequest {
     private String description;
     private ItemCategory category;
     private String code;
-    private UUID vehicleTypeId;
+    private UUID vehicleTypeId = null;
 }

@@ -50,10 +50,12 @@ public class UpdateItemUseCase {
             item.setVehicleType(vehicleType);
         }
 
+        if (request.getCode() != null)
+            item.setCode(request.getCode());
+
         item.setCategory(request.getCategory());
         item.setName(request.getName());
         item.setDescription(request.getDescription());
-        item.setCode(request.getCode());
 
         return Optional.of(itemService.save(item));
     }
