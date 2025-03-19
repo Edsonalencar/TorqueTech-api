@@ -126,18 +126,21 @@ public class InputStockTransactionUseCase {
                 )
             );
 
-            var local = localService.getByIdAndGarageId(itemRequest.getLocalId(), garage.getId()).orElseThrow(() ->
-                new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    "Item não encontrado!"
-                )
-            );
+            if (itemRequest.getLocalId() != null) {
+                var local = localService.getByIdAndGarageId(itemRequest.getLocalId(), garage.getId()).orElseThrow(() ->
+                    new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST,
+                        "Local não encontrado!"
+                    )
+                );
+
+                stockItem.setLocal(local);
+            }
 
             stockItem = new StockItem();
 
             stockItem.setGarage(garage);
             stockItem.setItem(item);
-            stockItem.setLocal(local);
             stockItem.setAcquisitionPrice(itemRequest.getAcquisitionUnitPrice());
             stockItem.setPrice(itemRequest.getPrice());
             stockItem.setAcquisitionAt(stockTransaction.getTransactionDate().toLocalDate());
