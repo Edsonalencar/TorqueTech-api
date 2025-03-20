@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -29,10 +30,14 @@ public class CreateItemUseCase {
             )
         );
 
-        ModelMapper mapper = new ModelMapper();
 
-        var item = mapper.map(request, Item.class);
+        var item = new Item();
+        if (request.getCode() != null)
+            item.setCode(request.getCode());
         item.setGarage(garage);
+        item.setCategory(request.getCategory());
+        item.setName(request.getName());
+        item.setDescription(request.getDescription());
 
         if (request.getVehicleTypeId() != null) {
             var vehicleType = vehicleTypeService.findById(request.getVehicleTypeId())
@@ -41,7 +46,6 @@ public class CreateItemUseCase {
                 );
             item.setVehicleType(vehicleType);
         }
-
         return Optional.of(itemService.save(item));
     }
 }
