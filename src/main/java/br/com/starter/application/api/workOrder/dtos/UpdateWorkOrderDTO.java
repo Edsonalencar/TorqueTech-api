@@ -18,5 +18,6 @@ public class UpdateWorkOrderDTO {
     private LocalDateTime startAt;
     private LocalDateTime expectedAt;
     private Long cost;
+    private Long price;
     private List<OutputStockItemDTO> stockItems;
 }

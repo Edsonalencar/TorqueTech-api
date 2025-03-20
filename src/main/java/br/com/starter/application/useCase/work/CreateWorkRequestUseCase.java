@@ -80,6 +80,7 @@ public class CreateWorkRequestUseCase {
                     workOrder.setStartAt(workOrderRequest.getStartAt());
                     workOrder.setExpectedAt(workOrderRequest.getExpectedAt());
                     workOrder.setCost(workOrderRequest.getCost());
+                    workOrder.setPrice(workOrderRequest.getPrice());
                     workOrder.setNote(workOrderRequest.getNote());
                     workOrder.setWork(work);
 

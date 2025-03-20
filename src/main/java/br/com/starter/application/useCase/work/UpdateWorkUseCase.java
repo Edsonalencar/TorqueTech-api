@@ -76,6 +76,7 @@ public class UpdateWorkUseCase {
                 workOrder.setStartAt(workOrderRequest.getStartAt());
                 workOrder.setExpectedAt(workOrderRequest.getExpectedAt());
                 workOrder.setCost(workOrderRequest.getCost());
+                workOrder.setPrice(workOrderRequest.getPrice());
 
                 if (workOrderRequest.getStatus() == WorkOrderStatus.DELETED) {
                     if (workOrder.getStockTransaction() != null) {

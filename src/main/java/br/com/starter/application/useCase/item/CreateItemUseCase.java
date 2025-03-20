@@ -46,6 +46,7 @@ public class CreateItemUseCase {
                 );
             item.setVehicleType(vehicleType);
         }
+
         return Optional.of(itemService.save(item));
     }
 }

@@ -25,7 +25,9 @@ public class WorkOrder {
     private String title;
     private String description;
     private String note;
+
     private Long cost;
+    private Long price;
 
     @Enumerated(EnumType.STRING)
     private WorkOrderStatus status = WorkOrderStatus.PENDING;

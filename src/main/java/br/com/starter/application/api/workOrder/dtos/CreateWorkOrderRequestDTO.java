@@ -16,7 +16,10 @@ public class CreateWorkOrderRequestDTO {
     private WorkOrderStatus status;
     private LocalDateTime startAt;
     private LocalDateTime expectedAt;
+
     private Long cost;
+    private Long price;
+
     private List<OutputStockItemDTO> stockItems;
 
     private UUID workId;
