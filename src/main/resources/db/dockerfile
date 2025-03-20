@@ -1,0 +1,11 @@
+FROM postgres:latest
+
+ENV POSTGRES_USER=dev
+ENV POSTGRES_PASSWORD=postgres
+ENV POSTGRES_DB=torquetech
+
+# Declarar um volume para persistir os dados do PostgreSQL
+VOLUME ["/var/lib/postgresql/data"]
+
+# Exponha a porta padrão do PostgreSQL
+EXPOSE 5432
