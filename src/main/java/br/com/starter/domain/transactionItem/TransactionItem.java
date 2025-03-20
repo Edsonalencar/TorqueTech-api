@@ -21,6 +21,8 @@ public class TransactionItem {
     private UUID id = UUID.randomUUID();
 
     private Integer quantity;
+    private Long price;
+    private Long discount;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "stock_item_id", nullable = false)

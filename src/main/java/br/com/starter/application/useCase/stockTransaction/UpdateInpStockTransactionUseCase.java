@@ -100,6 +100,10 @@ public class UpdateInpStockTransactionUseCase {
     ) {
         var transActionItem = new TransactionItem();
         transActionItem.setTransaction(stockTransaction);
+        transActionItem.setQuantity(itemRequest.getQuantity());
+        transActionItem.setPrice(itemRequest.getPrice());
+        transActionItem.setDiscount(itemRequest.getDiscount());
+
         StockItem stockItem = null;
 
         if(itemRequest.getStockItemId() != null){
@@ -148,7 +152,7 @@ public class UpdateInpStockTransactionUseCase {
         stockItem = stockItemService.save(stockItem);
 
         transActionItem.setStockItem(stockItem);
-        transActionItem.setQuantity(itemRequest.getQuantity());
+
 
         return transActionItem;
     }

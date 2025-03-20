@@ -10,6 +10,7 @@ import br.com.starter.domain.stockItem.StockItemService;
 import br.com.starter.domain.stockTransaction.StockTransaction;
 import br.com.starter.domain.stockTransaction.StockTransactionService;
 import br.com.starter.domain.stockTransaction.TransactionStatus;
+import br.com.starter.domain.stockTransaction.TransactionType;
 import br.com.starter.domain.transactionItem.TransactionItem;
 import br.com.starter.domain.transactionItem.TransactionItemService;
 import br.com.starter.domain.user.User;
@@ -44,6 +45,13 @@ public class UpdateOutStockTransactionUseCase {
                 "O usuário não possui uma oficina registrada!"
             )
         );
+
+        if (request.getType() != TransactionType.OUTPUT) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST,
+                    "Somente saída e orçamento!"
+            );
+        }
 
         var stockTransaction = stockTransactionService.getByIdAndGarageId(
             stockTransactionId,
@@ -84,6 +92,8 @@ public class UpdateOutStockTransactionUseCase {
         stockTransaction.getItems().clear();
         stockTransaction.setItems(transactionItems);
 
+        stockTransaction.setType(request.getType());
+
         return Optional.of(stockTransactionService.save(stockTransaction));
     }
 
@@ -94,27 +104,34 @@ public class UpdateOutStockTransactionUseCase {
         var transActionItem = new TransactionItem();
         transActionItem.setTransaction(stockTransaction);
         transActionItem.setQuantity(itemRequest.getQuantity());
+        transActionItem.setPrice(itemRequest.getPrice());
+        transActionItem.setDiscount(itemRequest.getDiscount());
 
         var stockItem = stockItemService.findById(
             itemRequest.getStockItemId(),
             stockTransaction.getGarage()
         ).orElseThrow();
 
-        StockItem finalStockItem = stockItem;
-        var transActionitem =stockTransaction.getItems().stream()
-            .filter(item -> item.getStockItem().getId() == finalStockItem.getId())
-            .findFirst().orElseThrow();
+        if(stockTransaction.getType() != TransactionType.QUOT) {
+            StockItem finalStockItem = stockItem;
+            var transActionitem =stockTransaction.getItems().stream()
+                    .filter(item -> item.getStockItem().getId() == finalStockItem.getId())
+                    .findFirst().orElseThrow();
 
-        stockItem.setQuantity(stockItem.getQuantity() + transActionitem.getQuantity());
-
-        if(stockItem.getQuantity() < itemRequest.getQuantity()) {
-            throw new ResponseStatusException(
-                HttpStatus.BAD_REQUEST,
-                "O estoque não possui esta quantidade de items!"
-            );
+            stockItem.setQuantity(stockItem.getQuantity() + transActionitem.getQuantity());
         }
 
-        stockItem.setQuantity(stockItem.getQuantity() - itemRequest.getQuantity());
+        if(stockTransaction.getType() == TransactionType.OUTPUT) {
+            if(stockItem.getQuantity() < itemRequest.getQuantity()) {
+                throw new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST,
+                        "O estoque não possui esta quantidade de items!"
+                );
+            }
+
+            stockItem.setQuantity(stockItem.getQuantity() - itemRequest.getQuantity());
+        }
+
         stockItem = stockItemService.save(stockItem);
 
         transActionItem.setStockItem(stockItem);

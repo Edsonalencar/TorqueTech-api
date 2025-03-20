@@ -9,4 +9,5 @@ public class OutputStockItemDTO {
     private UUID stockItemId;
     private Long price;
     private Integer quantity;
+    private Long discount;
 }

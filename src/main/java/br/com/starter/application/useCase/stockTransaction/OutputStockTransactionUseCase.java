@@ -43,8 +43,15 @@ public class OutputStockTransactionUseCase {
             )
         );
 
+        if (request.getType() != TransactionType.OUTPUT) {
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "Somente saída e orçamento!"
+            );
+        }
+
         var stockTransaction = new StockTransaction();
-        stockTransaction.setType(TransactionType.OUTPUT);
+        stockTransaction.setType(request.getType());
         stockTransaction.setGarage(garage);
         stockTransaction.setCategory(request.getCategory());
         stockTransaction.setOwner(user);
@@ -86,6 +93,8 @@ public class OutputStockTransactionUseCase {
         var transActionItem = new TransactionItem();
         transActionItem.setQuantity(itemRequest.getQuantity());
         transActionItem.setTransaction(transaction);
+        transActionItem.setPrice(itemRequest.getPrice());
+        transActionItem.setDiscount(itemRequest.getDiscount());
 
         var stockItem = stockItemService.findById(
             itemRequest.getStockItemId(),
@@ -97,14 +106,17 @@ public class OutputStockTransactionUseCase {
             )
         );
 
-        if(stockItem.getQuantity() < itemRequest.getQuantity()) {
-            throw new ResponseStatusException(
-                HttpStatus.BAD_REQUEST,
-                "O estoque não possui esta quantidade de items!"
-            );
-        }
+        if(transaction.getType() == TransactionType.OUTPUT) {
+            if(stockItem.getQuantity() < itemRequest.getQuantity()) {
+                throw new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST,
+                        "O estoque não possui esta quantidade de items!"
+                );
+            }
 
-        stockItem.setQuantity(stockItem.getQuantity() - itemRequest.getQuantity());
+            stockItem.setQuantity(stockItem.getQuantity() - itemRequest.getQuantity());
+        }
+        
         stockItem = stockItemService.save(stockItem);
 
         transActionItem.setStockItem(stockItem);

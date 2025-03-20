@@ -64,6 +64,8 @@ CREATE TABLE IF NOT EXISTS stock_transaction (
 CREATE TABLE IF NOT EXISTS transaction_item (
     id UUID PRIMARY KEY NOT NULL,
     quantity INTEGER NOT NULL,
+    price BIGINT,
+    discount BIGINT,
     stock_item_id UUID NOT NULL,
     transaction_id UUID NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),

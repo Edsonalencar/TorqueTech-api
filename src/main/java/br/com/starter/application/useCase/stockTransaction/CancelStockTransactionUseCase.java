@@ -64,7 +64,7 @@ public class CancelStockTransactionUseCase {
 
        if(transaction.getType() == TransactionType.INPUT) {
            stockItem.setQuantity( stockItem.getQuantity() - item.getQuantity());
-       } else {
+       } else if(transaction.getType() == TransactionType.OUTPUT){
            stockItem.setQuantity( stockItem.getQuantity() + item.getQuantity());
        }
 

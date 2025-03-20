@@ -110,7 +110,9 @@ public class InputStockTransactionUseCase {
         var transActionItem = new TransactionItem();
         transActionItem.setTransaction(stockTransaction);
         transActionItem.setQuantity(itemRequest.getQuantity());
-
+        transActionItem.setPrice(itemRequest.getPrice());
+        transActionItem.setDiscount(itemRequest.getDiscount());
+        
         var stockItem = stockItemService.findByItemAndPrice(
             itemRequest.getItemId(),
             garage.getId(),
