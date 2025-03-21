@@ -1,4 +1,4 @@
-package br.com.starter.domain.usersGarages;
+package br.com.starter.domain.usersGarage;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -53,6 +53,11 @@ public class UsersGarageService {
     public boolean isUserGaragePrimary(UUID userId, UUID garageId) {
         return usersGarageRepository.isUserGaragePrimary(userId, garageId);
     }
+
+    public boolean userAlreadyHasPrimaryGarage(UUID userId) {
+        return usersGarageRepository.findPrimaryByUser(userId).isPresent();
+    }
+    
 
     public List<UsersGarage> getAll() {
         return usersGarageRepository.findAll();

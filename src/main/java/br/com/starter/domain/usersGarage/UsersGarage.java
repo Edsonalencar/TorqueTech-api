@@ -1,4 +1,4 @@
-package br.com.starter.domain.usersGarages;
+package br.com.starter.domain.usersGarage;
 
 
 import java.time.LocalDateTime;
