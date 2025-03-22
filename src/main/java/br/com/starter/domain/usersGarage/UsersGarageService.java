@@ -28,8 +28,14 @@ public class UsersGarageService {
                         HttpStatus.NOT_FOUND, "Relação não encontrada"));
     }
 
-    public Page<UsersGarage> findByUser(UUID userId, Pageable pageable) {
-        return usersGarageRepository.findByUser(userId, pageable);
+    public UsersGarage getByUserAndGarage(UUID userId, UUID garageId) {
+        return usersGarageRepository.findByUserAndGarage(userId, garageId)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND, "Relação não encontrada"));
+    }
+
+    public List<UsersGarage> findByUser(UUID userId) {
+        return usersGarageRepository.findByUser(userId);
     }
 
     public Page<UsersGarage> findByGarage(UUID garageId, Pageable pageable) {
