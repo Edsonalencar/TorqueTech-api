@@ -3,11 +3,13 @@ package br.com.starter.application.api.garage;
 import br.com.starter.application.api.common.GetPageRequest;
 import br.com.starter.application.api.common.ResponseDTO;
 import br.com.starter.application.api.garage.dtos.CreateGarageDTO;
+import br.com.starter.application.api.garage.dtos.CreateGarageForExistingUsersDTO;
 import br.com.starter.application.api.garage.dtos.UpdateGarageDTO;
 import br.com.starter.application.useCase.garage.CreateGarageUseCase;
 import br.com.starter.application.useCase.garage.GetPageGarageUseCase;
 import br.com.starter.application.useCase.garage.UpdateGarageUseCase;
 import br.com.starter.application.useCase.garage.getGarageUseCase;
+import br.com.starter.application.useCase.usersGarages.GetAllGaragesByUserUseCase;
 import br.com.starter.domain.user.CustomUserDetails;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,7 @@ public class GarageController {
     private final GetPageGarageUseCase getPageGarageUseCase;
     private final getGarageUseCase getGarageUseCase;
     private final UpdateGarageUseCase updateGarageUseCase;
+    private final GetAllGaragesByUserUseCase getAllGaragesByUserUseCase;	
 
     @PostMapping
     public ResponseEntity<?> create(
@@ -35,6 +38,18 @@ public class GarageController {
         return ResponseEntity.ok(
             new ResponseDTO<>(
                 createGarageUseCase.handler(request)
+            )
+        );
+    }
+
+    @PostMapping("/create-for-existing-users")
+    public ResponseEntity<?> createGarageForUser(
+        @AuthenticationPrincipal CustomUserDetails userAuthentication,
+        @Valid @RequestBody CreateGarageForExistingUsersDTO request
+    ) {
+        return ResponseEntity.ok(
+            new ResponseDTO<>(
+                createGarageUseCase.handlerForExistingUsers(request)
             )
         );
     }
@@ -73,6 +88,18 @@ public class GarageController {
         return ResponseEntity.ok(
             new ResponseDTO<>(
                 getGarageUseCase.handler(garageId)
+            )
+        );
+    }
+
+    @GetMapping("/get-all-garages/{userId}")
+    public ResponseEntity<?> getAllGaragesByUser(
+        @AuthenticationPrincipal CustomUserDetails userAuthentication,
+        @PathVariable UUID userId
+    ) {
+        return ResponseEntity.ok(
+            new ResponseDTO<>(
+                getAllGaragesByUserUseCase.handler(userId)
             )
         );
     }

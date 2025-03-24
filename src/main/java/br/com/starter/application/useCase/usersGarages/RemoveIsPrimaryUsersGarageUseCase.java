@@ -26,6 +26,7 @@ public class RemoveIsPrimaryUsersGarageUseCase {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Essa garagem já não é a principal");
         }
 
+
         return usersGarageService.update(relation.getId(), false);
     }
 }

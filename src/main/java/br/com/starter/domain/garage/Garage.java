@@ -5,6 +5,7 @@ import br.com.starter.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -23,7 +24,7 @@ public class Garage {
     private String name;
     private String cnpj;
 
-    @OneToOne
+    @ManyToOne
     private User owner;
     @OneToOne
     private Address address;
