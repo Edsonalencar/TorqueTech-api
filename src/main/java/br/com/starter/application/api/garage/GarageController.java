@@ -7,6 +7,7 @@ import br.com.starter.application.api.garage.dtos.CreateGarageForExistingUsersDT
 import br.com.starter.application.api.garage.dtos.UpdateGarageDTO;
 import br.com.starter.application.useCase.garage.CreateGarageUseCase;
 import br.com.starter.application.useCase.garage.GetPageGarageUseCase;
+import br.com.starter.application.useCase.garage.GetPrimaryGarageUseCase;
 import br.com.starter.application.useCase.garage.UpdateGarageUseCase;
 import br.com.starter.application.useCase.garage.getGarageUseCase;
 import br.com.starter.application.useCase.usersGarages.GetAllGaragesByUserUseCase;
@@ -29,6 +30,7 @@ public class GarageController {
     private final getGarageUseCase getGarageUseCase;
     private final UpdateGarageUseCase updateGarageUseCase;
     private final GetAllGaragesByUserUseCase getAllGaragesByUserUseCase;	
+    private final GetPrimaryGarageUseCase getPrimaryGarageUseCase;
 
     @PostMapping
     public ResponseEntity<?> create(
@@ -100,6 +102,18 @@ public class GarageController {
         return ResponseEntity.ok(
             new ResponseDTO<>(
                 getAllGaragesByUserUseCase.handler(userId)
+            )
+        );
+    }
+
+    @GetMapping("/get-primary-garage/{userId}")
+    public ResponseEntity<?> getPrimaryGarage(
+        @AuthenticationPrincipal CustomUserDetails userAuthentication,
+        @PathVariable UUID userId
+    ) {
+        return ResponseEntity.ok(
+            new ResponseDTO<>(
+                getPrimaryGarageUseCase.handler(userId)
             )
         );
     }
