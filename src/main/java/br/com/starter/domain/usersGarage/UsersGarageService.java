@@ -76,14 +76,11 @@ public class UsersGarageService {
 
         if (isPrimary) {
             usersGarageRepository.findPrimaryByUser(current.getUser().getId())
-                    .ifPresent(primary -> {
-                        primary.setPrimary(false);
-                        primary.setIsPrimaryEdit(LocalDateTime.now());
-                        usersGarageRepository.save(primary);
-                    });
-            current.setPrimary(isPrimary);
-        } else
-            current.setPrimary(isPrimary);
+            .ifPresent(usersGarage -> {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário já possui uma garagem principal");
+            });   
+        }
+        current.setPrimary(isPrimary);
         current.setIsPrimaryEdit(LocalDateTime.now());
 
         return usersGarageRepository.save(current);

@@ -5,6 +5,7 @@ import br.com.starter.application.api.common.ResponseDTO;
 import br.com.starter.application.api.garage.dtos.CreateGarageDTO;
 import br.com.starter.application.api.garage.dtos.CreateGarageForExistingUsersDTO;
 import br.com.starter.application.api.garage.dtos.UpdateGarageDTO;
+import br.com.starter.application.useCase.garage.ChangePrimaryGarageUseCase;
 import br.com.starter.application.useCase.garage.CreateGarageUseCase;
 import br.com.starter.application.useCase.garage.GetPageGarageUseCase;
 import br.com.starter.application.useCase.garage.GetPrimaryGarageUseCase;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+
 @RestController
 @RequestMapping("/torque/api/garage")
 @RequiredArgsConstructor
@@ -31,6 +33,7 @@ public class GarageController {
     private final UpdateGarageUseCase updateGarageUseCase;
     private final GetAllGaragesByUserUseCase getAllGaragesByUserUseCase;	
     private final GetPrimaryGarageUseCase getPrimaryGarageUseCase;
+    private final ChangePrimaryGarageUseCase changePrimaryGarageUseCase;
 
     @PostMapping
     public ResponseEntity<?> create(
@@ -114,6 +117,19 @@ public class GarageController {
         return ResponseEntity.ok(
             new ResponseDTO<>(
                 getPrimaryGarageUseCase.handler(userId)
+            )
+        );
+    }
+
+    @PatchMapping("/change-primary-garage/{userId}/{garageId}")
+    public ResponseEntity<?> changePrimaryGarage(
+        @AuthenticationPrincipal CustomUserDetails userAuthentication,
+        @PathVariable UUID userId,
+        @PathVariable UUID garageId
+    ) {
+        return ResponseEntity.ok(
+            new ResponseDTO<>(
+                changePrimaryGarageUseCase.handler(userId, garageId)
             )
         );
     }
