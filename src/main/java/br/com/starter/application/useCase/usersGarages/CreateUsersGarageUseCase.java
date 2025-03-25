@@ -48,7 +48,7 @@ public class CreateUsersGarageUseCase {
         UsersGarage usersGarage = new UsersGarage();
         usersGarage.setUser(user);
         usersGarage.setGarage(garage);
-        usersGarage.setPrimary(request.isPrimary());;
+        usersGarage.setPrimary(request.isPrimary());
         usersGarage.setCreatedAt(LocalDateTime.now());
         usersGarage.setIsPrimaryEdit(LocalDateTime.now());
 
