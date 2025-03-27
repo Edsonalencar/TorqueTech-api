@@ -2,7 +2,6 @@ package br.com.starter.application.api.stockItem;
 
 import br.com.starter.application.api.common.ResponseDTO;
 import br.com.starter.application.api.stockItem.dto.GetPageStockItemRequest;
-import br.com.starter.application.api.stockTransaction.dtos.GetPageStockTransactionRequest;
 import br.com.starter.application.useCase.stockItem.GetAllStockItemUseCase;
 import br.com.starter.application.useCase.stockItem.GetPageStockItemUseCase;
 import br.com.starter.domain.user.CustomUserDetails;

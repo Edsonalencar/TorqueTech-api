@@ -2,7 +2,6 @@ package br.com.starter.application.api.stockTransaction.dtos;
 
 import br.com.starter.domain.stockTransaction.TransactionCategory;
 import br.com.starter.domain.stockTransaction.TransactionType;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import java.util.Set;

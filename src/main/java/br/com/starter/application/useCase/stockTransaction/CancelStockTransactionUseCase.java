@@ -1,9 +1,7 @@
 package br.com.starter.application.useCase.stockTransaction;
 
-import br.com.starter.application.api.stockTransaction.dtos.OutputStockTransactionRequest;
 import br.com.starter.domain.garage.Garage;
 import br.com.starter.domain.garage.GarageService;
-import br.com.starter.domain.stockItem.StockItem;
 import br.com.starter.domain.stockItem.StockItemService;
 import br.com.starter.domain.stockTransaction.StockTransaction;
 import br.com.starter.domain.stockTransaction.StockTransactionService;
@@ -17,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

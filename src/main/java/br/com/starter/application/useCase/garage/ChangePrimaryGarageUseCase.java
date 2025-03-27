@@ -1,18 +1,13 @@
 package br.com.starter.application.useCase.garage;
 
-import java.util.Optional;
 import java.util.UUID;
 
-import org.hibernate.Remove;
 import org.springframework.stereotype.Component;
 
 import br.com.starter.application.useCase.manager.ChangePrimaryGarageManagerUseCase;
 import br.com.starter.application.useCase.mechanic.ChangePrimaryGarageMechanicUseCase;
 import br.com.starter.application.useCase.usersGarages.RemoveIsPrimaryUsersGarageUseCase;
 import br.com.starter.application.useCase.usersGarages.SetIsPrimaryUsersGarageUseCase;
-import br.com.starter.domain.garage.Garage;
-import br.com.starter.domain.garage.GarageService;
-import br.com.starter.domain.role.RoleType;
 import br.com.starter.domain.user.User;
 import br.com.starter.domain.user.UserService;
 import br.com.starter.domain.usersGarage.UsersGarage;

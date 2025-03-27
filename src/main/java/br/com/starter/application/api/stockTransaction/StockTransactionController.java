@@ -5,20 +5,13 @@ import br.com.starter.application.api.stockTransaction.dtos.InputStockTransactio
 import br.com.starter.application.api.stockTransaction.dtos.GetPageStockTransactionRequest;
 import br.com.starter.application.api.stockTransaction.dtos.OutputStockTransactionRequest;
 import br.com.starter.application.useCase.stockTransaction.*;
-import br.com.starter.domain.stockItem.StockItem;
-import br.com.starter.domain.stockTransaction.StockTransaction;
-import br.com.starter.domain.transactionItem.TransactionItem;
 import br.com.starter.domain.user.CustomUserDetails;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @RestController

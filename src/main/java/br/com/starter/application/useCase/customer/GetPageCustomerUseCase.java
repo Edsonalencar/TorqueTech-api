@@ -1,8 +1,6 @@
 package br.com.starter.application.useCase.customer;
 
 import br.com.starter.application.api.common.GetPageRequest;
-import br.com.starter.application.api.customer.dtos.CreateCustomerDTO;
-import br.com.starter.domain.customer.Customer;
 import br.com.starter.domain.customer.CustomerService;
 import br.com.starter.domain.garage.Garage;
 import br.com.starter.domain.garage.GarageService;

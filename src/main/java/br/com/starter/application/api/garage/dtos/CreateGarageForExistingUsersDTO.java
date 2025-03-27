@@ -1,7 +1,6 @@
 package br.com.starter.application.api.garage.dtos;
 
 import br.com.starter.application.api.common.AddressDTO;
-import br.com.starter.domain.role.RoleType;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

@@ -1,8 +1,6 @@
 package br.com.starter.application.api.mechanic.dtos;
 
 import br.com.starter.domain.role.RoleType;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.time.LocalDate;

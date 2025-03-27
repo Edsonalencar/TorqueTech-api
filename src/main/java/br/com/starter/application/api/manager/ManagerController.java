@@ -4,7 +4,6 @@ import br.com.starter.application.api.common.GetPageRequest;
 import br.com.starter.application.api.common.ResponseDTO;
 import br.com.starter.application.api.manager.dtos.CreateManagerDTO;
 import br.com.starter.application.api.manager.dtos.UpdateManagerDTO;
-import br.com.starter.application.useCase.manager.ChangePrimaryGarageManagerUseCase;
 import br.com.starter.application.useCase.manager.CreateManagerUseCase;
 import br.com.starter.application.useCase.manager.GetManagerUseCase;
 import br.com.starter.application.useCase.manager.GetPageManagerUseCase;
@@ -26,7 +25,6 @@ public class ManagerController {
     private final GetPageManagerUseCase getPageManagerUseCase;
     private final GetManagerUseCase getManagerUseCase;
     private final UpdateManagerUseCase updateManagerUseCase;
-    private final ChangePrimaryGarageManagerUseCase changePrimaryGarageUseCase;
 
     @PostMapping
     public ResponseEntity<?> create(

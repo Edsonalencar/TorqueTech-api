@@ -12,8 +12,6 @@ import br.com.starter.domain.user.UserService;  // Serviço para buscar o owner
 import br.com.starter.domain.vehicle.Vehicle;
 import br.com.starter.domain.vehicle.VehicleService;
 import br.com.starter.domain.vehicleType.VehicleType;
-import br.com.starter.infrastructure.services.utils.DocumentValidatorUtil;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -21,7 +19,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;

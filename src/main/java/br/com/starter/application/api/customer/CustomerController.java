@@ -5,19 +5,14 @@ import br.com.starter.application.api.common.ResponseDTO;
 import br.com.starter.application.api.customer.dtos.CreateCustomerDTO;
 import br.com.starter.application.api.customer.dtos.UpdateCustomerDTO;
 import br.com.starter.application.useCase.customer.*;
-import br.com.starter.domain.customer.Customer;
-import br.com.starter.domain.customer.CustomerService;
+
 import br.com.starter.domain.user.CustomUserDetails;
-import br.com.starter.domain.user.UserStatus;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.UUID;
 
 @RestController

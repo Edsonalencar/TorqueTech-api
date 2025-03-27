@@ -2,12 +2,10 @@ package br.com.starter.application.useCase.item;
 
 import br.com.starter.application.api.item.dtos.CreateItemRequest;
 import br.com.starter.domain.garage.GarageService;
-import br.com.starter.domain.item.Item;
 import br.com.starter.domain.item.ItemService;
 import br.com.starter.domain.user.User;
 import br.com.starter.domain.vehicleType.VehicleTypeService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;

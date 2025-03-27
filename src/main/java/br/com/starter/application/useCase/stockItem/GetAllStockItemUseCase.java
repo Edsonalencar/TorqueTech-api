@@ -1,7 +1,6 @@
 package br.com.starter.application.useCase.stockItem;
 
 import br.com.starter.domain.garage.GarageService;
-import br.com.starter.domain.local.LocalService;
 import br.com.starter.domain.stockItem.StockItemService;
 import br.com.starter.domain.user.User;
 import lombok.RequiredArgsConstructor;

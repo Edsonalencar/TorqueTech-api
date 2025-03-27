@@ -8,7 +8,6 @@ import br.com.starter.domain.stockTransaction.TransactionStatus;
 import br.com.starter.domain.stockTransaction.TransactionType;
 import br.com.starter.domain.transactionItem.TransactionItem;
 import br.com.starter.domain.user.User;
-import br.com.starter.domain.workOrder.WorkOrder;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;

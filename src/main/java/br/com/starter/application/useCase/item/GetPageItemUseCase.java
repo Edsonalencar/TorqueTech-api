@@ -1,7 +1,7 @@
 package br.com.starter.application.useCase.item;
 
 import br.com.starter.application.api.common.GetPageRequest;
-import br.com.starter.application.api.item.dtos.CreateItemRequest;
+
 import br.com.starter.domain.garage.GarageService;
 import br.com.starter.domain.item.ItemService;
 import br.com.starter.domain.item.ItemStatus;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
-import java.util.UUID;
+
 
 @Component
 @RequiredArgsConstructor

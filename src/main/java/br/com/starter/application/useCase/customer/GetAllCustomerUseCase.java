@@ -1,12 +1,10 @@
 package br.com.starter.application.useCase.customer;
 
-import br.com.starter.application.api.common.GetPageRequest;
 import br.com.starter.domain.customer.CustomerService;
 import br.com.starter.domain.garage.Garage;
 import br.com.starter.domain.garage.GarageService;
 import br.com.starter.domain.user.User;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;

@@ -1,5 +1,4 @@
 package br.com.starter.application.api.role;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

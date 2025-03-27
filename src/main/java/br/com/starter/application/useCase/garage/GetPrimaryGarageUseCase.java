@@ -1,13 +1,11 @@
 package br.com.starter.application.useCase.garage;
 
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
 import br.com.starter.application.useCase.usersGarages.GetPrimaryGarageByUserUseCase;
 import br.com.starter.domain.garage.Garage;
-import br.com.starter.domain.garage.GarageService;
 import br.com.starter.domain.user.UserService;
 import lombok.RequiredArgsConstructor;
 
