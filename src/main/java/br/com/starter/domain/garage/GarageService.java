@@ -58,8 +58,8 @@ public class GarageService {
         if (manager.isPresent())
             return Optional.of(manager.get().getGarage());
 
+        
 
-
-        return  garageRepository.findByOwner(user.getId());
+        return  garageRepository.findPrimaryByOwner(user.getId());
     }
 }

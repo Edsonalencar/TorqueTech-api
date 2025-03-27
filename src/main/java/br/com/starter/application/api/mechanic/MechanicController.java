@@ -23,6 +23,7 @@ public class MechanicController {
     private final GetMechanicUseCase getMechanicUseCase;
     private final UpdateMechanicUseCase updateMechanicUseCase;
     private final GetAllMechanicsUseCase getAllMechanicsUseCase;
+    private final ChangePrimaryGarageMechanicUseCase changePrimaryGarageUseCase;
 
     @PostMapping
     public ResponseEntity<?> create(
@@ -86,4 +87,5 @@ public class MechanicController {
             )
         );
     }
+
 }

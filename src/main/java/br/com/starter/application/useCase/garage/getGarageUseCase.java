@@ -9,7 +9,7 @@ import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
-public class getGarageUseCase {
+public class GetGarageUseCase {
     private final GarageService garageService;
 
     public Optional<?> handler(UUID garageId) {

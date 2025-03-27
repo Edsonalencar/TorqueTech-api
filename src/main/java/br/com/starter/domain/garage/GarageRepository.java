@@ -14,14 +14,15 @@ import java.util.UUID;
 
 @Repository
 public interface GarageRepository extends JpaRepository<Garage, UUID> {
-
+    // Query para selecionar a garagem principal, baseada na tabela usersGarage
     @Query("""
         SELECT g FROM Garage g
-        WHERE g.owner.id = :ownerId
+        JOIN UsersGarage ug ON ug.garage.id = g.id 
+        WHERE ug.user.id = :ownerId
+        AND ug.isPrimary = true
     """)
-    Optional<Garage> findByOwner(
-        @Param("ownerId") UUID ownerId
-    );
+    Optional<Garage> findPrimaryByOwner(@Param("ownerId") UUID ownerId);
+    
 
     @Query("""
         SELECT g FROM Garage g
