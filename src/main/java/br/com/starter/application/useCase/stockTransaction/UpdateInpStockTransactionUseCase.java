@@ -85,7 +85,7 @@ public class UpdateInpStockTransactionUseCase {
             .reduce(0, Integer::sum);
 
         var transActionTotalItemsPrice = request.getItems().stream()
-            .map(InputStockItemDTO::getPrice)
+            .map(InputStockItemDTO::getAcquisitionUnitPrice)
             .reduce(0L, Long::sum);
 
         stockTransaction.setQuantity(transActionTotalQuantity);
@@ -102,7 +102,6 @@ public class UpdateInpStockTransactionUseCase {
         transActionItem.setTransaction(stockTransaction);
         transActionItem.setQuantity(itemRequest.getQuantity());
         transActionItem.setPrice(itemRequest.getPrice());
-        transActionItem.setDiscount(itemRequest.getDiscount());
 
         StockItem stockItem = null;
 

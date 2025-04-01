@@ -93,7 +93,7 @@ public class InputStockTransactionUseCase {
             .reduce(0, Integer::sum);
 
         var transActionTotalItemsPrice = request.getItems().stream()
-            .map(InputStockItemDTO::getPrice)
+            .map(InputStockItemDTO::getAcquisitionUnitPrice)
             .reduce(0L, Long::sum);
 
         stockTransaction.setQuantity(transActionTotalQuantity);
@@ -111,8 +111,7 @@ public class InputStockTransactionUseCase {
         transActionItem.setTransaction(stockTransaction);
         transActionItem.setQuantity(itemRequest.getQuantity());
         transActionItem.setPrice(itemRequest.getPrice());
-        transActionItem.setDiscount(itemRequest.getDiscount());
-        
+
         var stockItem = stockItemService.findByItemAndPrice(
             itemRequest.getItemId(),
             garage.getId(),

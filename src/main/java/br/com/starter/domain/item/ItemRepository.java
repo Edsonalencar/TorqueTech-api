@@ -41,6 +41,7 @@ public interface ItemRepository extends JpaRepository<Item, UUID> {
         AND (
             :query IS NULL
             OR LOWER(i.name) LIKE LOWER(CONCAT('%', :query, '%'))
+            OR LOWER(i.code) LIKE LOWER(CONCAT('%', :query, '%'))
         )
     """)
     Page<Item> findPageAllByGarageAndQuery(

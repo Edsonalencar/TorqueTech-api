@@ -12,6 +12,5 @@ public class InputStockItemDTO {
     private Long acquisitionUnitPrice;
 
     private Long price;
-    private Long discount;
     private Integer quantity;
 }
