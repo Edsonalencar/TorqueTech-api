@@ -239,4 +239,8 @@ public class UserService {
         return userRepository.save(currentUser);
     }
 
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByAuthUsername(username);
+    }
+
 }

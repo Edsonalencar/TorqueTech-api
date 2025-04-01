@@ -2,6 +2,8 @@ package br.com.starter.application.useCase.manager;
 
 import br.com.starter.application.api.manager.dtos.CreateManagerDTO;
 import br.com.starter.application.api.user.dto.UserRegistrationRequest;
+import br.com.starter.application.api.usersGarage.dtos.CreateUsersGarageDTO;
+import br.com.starter.application.useCase.usersGarages.CreateUsersGarageUseCase;
 import br.com.starter.domain.garage.Garage;
 import br.com.starter.domain.garage.GarageService;
 import br.com.starter.domain.manager.Manager;
@@ -23,26 +25,34 @@ public class CreateManagerUseCase {
     private final UserService userService;
     private final ManagerService managerService;
     private final GarageService garageService;
+    private final CreateUsersGarageUseCase createUsersGarageUseCase;
 
     @Transactional
-    public Optional<Manager> handler(CreateManagerDTO request, User user){
+    public Optional<Manager> handler(CreateManagerDTO request, User user) {
         ModelMapper mapper = new ModelMapper();
 
-        Garage garage = garageService.getByUser(user).orElseThrow(() ->
-            new ResponseStatusException(
-                HttpStatus.BAD_REQUEST,
-                "O usuário não possui uma oficina registrada"
-            )
-        );
+        Garage garage = garageService.getByUser(user)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                        "O usuário não possui uma oficina registrada"));
+
+        var createUserRequest = mapper.map(request, UserRegistrationRequest.class);
+        var newUser = userService.create(createUserRequest);
+
+        // Cria a relação como primária
+        var createUsersGarageRequest = new CreateUsersGarageDTO();
+        createUsersGarageRequest.setUserId(newUser.getId());
+        createUsersGarageRequest.setGarageId(garage.getId());
+        createUsersGarageRequest.setPrimary(true);
+
+        createUsersGarageUseCase.handler(createUsersGarageRequest)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.INTERNAL_SERVER_ERROR, "Erro ao criar relação user garage"));
 
         var manager = new Manager();
-
-        manager.setGarage(garage);
-        var createUserRequest = mapper.map(request, UserRegistrationRequest.class);
-
-        var newUser = userService.create(createUserRequest);
         manager.setUser(newUser);
+        manager.setGarage(garage);
 
         return Optional.of(managerService.save(manager));
     }
+
 }

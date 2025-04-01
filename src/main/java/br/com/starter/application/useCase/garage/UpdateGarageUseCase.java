@@ -47,9 +47,10 @@ public class UpdateGarageUseCase {
         var updateRequest = mapper.map(request, UpdateUserDTO.class);
         updateRequest.setName(request.getOwnerName()); // seta o nome certo pois a clonagem vai pegar o getName que é o nome da oficina
 
+
         var user = userService.update(request.getOwnerId(), updateRequest);
         garage.setOwner(user);
 
         return Optional.of(garageService.save(garage));
-    };
+    }
 }
